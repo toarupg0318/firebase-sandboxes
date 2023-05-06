@@ -5,16 +5,14 @@ import {AuthUser} from "@/package/types/AuthUser";
 
 export class FirebaseAuthRepository implements IAuthRepository {
     public checkLoggedIn(handlers: {
-        loggedInHandler: (user: AuthUser) => void;
-        notLoggedInHandler: (user: AuthUser) => void
+        loggedInHandler: () => void;
+        notLoggedInHandler: () => void
     }): void {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                handlers.loggedInHandler({
-                    id: auth.currentUser?.uid,
-                    name: auth.name,
-                    token: await user.getIdToken()
-                });
+                handlers.loggedInHandler();
+            } else {
+                handlers.notLoggedInHandler();
             }
         })
     }

@@ -1,7 +1,4 @@
-import './globals.css'
-//import { Inter } from 'next/font/google'
-
-//const inter = Inter({ subsets: ['latin'] })
+import {AuthContextProvider} from "@/contexts/AuthContext";
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,8 +11,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+      <AuthContextProvider>
+        <html lang="en">
+          <body>
+            {children}
+          </body>
+        </html>
+      </AuthContextProvider>
   )
 }
