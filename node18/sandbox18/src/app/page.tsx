@@ -9,7 +9,8 @@ export default function Home() {
             <div>a</div>
             <button
                 onClick={async () => {
-                    console.log(await authRepo.getAuthUser())}
+                    console.log(await authRepo.getAuthUser())
+                }
                 }
             >
                 console.log user
